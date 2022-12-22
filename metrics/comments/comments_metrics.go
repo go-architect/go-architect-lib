@@ -1,4 +1,4 @@
-// Package comments provides functions know the level of comments in a Golang project
+// Package comments provides functions to know information about comments in a Golang project
 package comments
 
 import (

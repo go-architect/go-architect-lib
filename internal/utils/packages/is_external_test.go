@@ -11,17 +11,19 @@ func TestIsExternal(t *testing.T) {
 		input string
 		want  bool
 	}{
-		{"foobar", false},
+		{"foobar/x", false},
 		{"fooBar", false},
 		{"golang.org/x/foobar", false},
 		{"golang.org/x", false},
-		{"foo.bar", true},
+		{"foobar/bar", false},
+		{"blablabla/xxxxxx", false},
+		{"blablabla.com/xxxxxx", true},
 	}
 
 	for _, tt := range tests {
 		testCase := fmt.Sprintf("input: %s", tt.input)
 		t.Run(testCase, func(t *testing.T) {
-			ans := packages.IsExternalPackage(tt.input)
+			ans := packages.IsExternalPackage(tt.input, "foobar")
 			if ans != tt.want {
 				t.Errorf("got %v, want %v", ans, tt.want)
 			}

@@ -2,7 +2,6 @@
 package dependency
 
 import (
-	"fmt"
 	"github.com/fdaines/go-architect-lib/internal/utils/arrays"
 	packageUtils "github.com/fdaines/go-architect-lib/internal/utils/packages"
 	packages2 "github.com/fdaines/go-architect-lib/packages"
@@ -17,7 +16,7 @@ func GetDependencyGraph(prj project.ProjectInfo, startPackage string) (*ModuleDe
 		return nil, err
 	}
 
-	fmt.Printf("StartPackage: %s\n", startPackage)
+	//	fmt.Printf("StartPackage: %s\n", startPackage)
 	if startPackage == allPackages {
 		return getFullDependencyGraph(pkgs, prj.Package, prj.OrganizationPackages), nil
 	}

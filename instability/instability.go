@@ -2,7 +2,6 @@
 package instability
 
 import (
-	"fmt"
 	"github.com/fdaines/go-architect-lib/internal/utils"
 	"github.com/fdaines/go-architect-lib/internal/utils/arrays"
 	packageUtils "github.com/fdaines/go-architect-lib/internal/utils/packages"
@@ -59,7 +58,6 @@ func calculateAbstractionsAndImplementations(info *PackageInstability, pkg *pack
 			}
 		}
 	}
-	fmt.Printf("[%s][Abstractions: %v][Implementations: %v]\n", info.PackageName, info.AbstractionsCount, info.ImplementationsCount)
 }
 
 func calculateDistanceFromDiagonal(info *PackageInstability) {
