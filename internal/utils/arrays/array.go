@@ -3,7 +3,7 @@ package arrays
 
 import "fmt"
 
-// RemoveDuplicatedStrings receives an slice/array and removes the duplicated values
+// RemoveDuplicatedStrings receives a slice and removes the duplicated values
 func RemoveDuplicatedStrings(array []string) []string {
 	allKeys := make(map[string]bool)
 	var list []string
@@ -16,7 +16,7 @@ func RemoveDuplicatedStrings(array []string) []string {
 	return list
 }
 
-// IndexOf returns the index of the desired value in the slice/array.
+// IndexOf returns the index of the desired value in the slice.
 //
 // If the value is not present in the collection, then IndexOf will return -1
 func IndexOf(array []string, value string) int {

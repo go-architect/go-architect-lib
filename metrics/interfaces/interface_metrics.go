@@ -1,4 +1,4 @@
-// Package interfaces provides functions to retrieve information about interfaces in a Golang Project
+// Package interfaces provides functions to retrieve information about interfaces in a Golang project
 package interfaces
 
 import (
@@ -16,7 +16,7 @@ import (
 // ResolveInterfaceMetrics retrieves metrics about interfaces in the provided Golang project.
 //
 // An error is returned when it's not possible to get the packages information
-func ResolveInterfaceMetrics(prj project.ProjectInfo) (*InterfaceMetrics, error) {
+func ResolveInterfaceMetrics(prj *project.ProjectInfo) (*InterfaceMetrics, error) {
 	var interfaceInfos []InterfaceInfo
 	pkgs, err := packages.GetBasicPackagesInfo(prj)
 	if err != nil {

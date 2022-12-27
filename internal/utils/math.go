@@ -1,4 +1,4 @@
-// Package utils provides general utility functions
+// Package utils provides math utility functions
 package utils
 
 import "math"

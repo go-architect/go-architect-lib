@@ -1,4 +1,4 @@
-// Package types provides functions to count how many elements of each type are created in a Golang project
+// Package types provides functions to count how many elements of each type are part of a Golang project
 package types
 
 import (
@@ -12,7 +12,11 @@ import (
 	"path/filepath"
 )
 
-func ResolveProjectTypes(prj project.ProjectInfo) (*ProjectTypes, error) {
+// ResolveProjectTypes returns a structure of type ProjectTypes which represents the number of each element type in
+// a Golang project.
+//
+// An error is returned when it's not possible to get the packages information
+func ResolveProjectTypes(prj *project.ProjectInfo) (*ProjectTypes, error) {
 	var pkgCount, srcFileCount int
 	var structCount, interfaceCount, functionCount, methodCount int
 	var varCount, constCount int

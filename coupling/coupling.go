@@ -1,4 +1,4 @@
-// Package coupling provides functions know the level of comments in a Golang project
+// Package coupling provides functions to evaluate the coupling level respect to a dependency in a Golang project
 package coupling
 
 import (
@@ -14,7 +14,7 @@ import (
 // CalculateCoupling retrieves information about the coupling level of a provided Golang project respect to a specific dependency
 //
 // An error is returned when it's not possible to get the packages information
-func CalculateCoupling(prj project.ProjectInfo, dep string) (*DependencyCoupling, error) {
+func CalculateCoupling(prj *project.ProjectInfo, dep string) (*DependencyCoupling, error) {
 	pkgs, err := packages.GetBasicPackagesInfo(prj)
 	if err != nil {
 		return nil, err

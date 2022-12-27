@@ -16,7 +16,7 @@ import (
 // ResolveCommentsMetrics retrieves metrics about comments in the provided Golang project.
 //
 // An error is returned when it's not possible to get the packages information
-func ResolveCommentsMetrics(prj project.ProjectInfo) (*CommentsMetrics, error) {
+func ResolveCommentsMetrics(prj *project.ProjectInfo) (*CommentsMetrics, error) {
 	pkgs, err := packages.GetBasicPackagesInfo(prj)
 	if err != nil {
 		return nil, err
