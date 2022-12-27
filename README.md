@@ -10,18 +10,19 @@ to support the architectural analysis for a Golang Project.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-  - [Import the library](#import-go-architect)
-  - [Load Project Information](#xxxxxx)
-  - [Load Dependency Structure Matrix](#xxxxx)
-  - [Load Dependencies Graph](#xxxxx)
-  - [Get Instability and Abstractness](#xxxxxx)
-  - [General Metrics](#xxxxxx)
-    - [Lines of Code](#xxxxxx)
-    - [Count types](#xxxxxx)
-    - [Interfaces](#xxxxxx)
-    - [Comments](#xxxxxx)
-  - [Get Packages Information](#xxxxxx)
-  - [Git Repository Information](#xxxxxx)
+  - [Import the library](#importing-the-library)
+  - [Load Project Information](#load-project-information)
+  - [Calculate Dependency Coupling Level](#calculate-dependency-coupling)
+  - [Load Dependency Structure Matrix](#load-dependency-structure-matrix)
+  - [Load Dependencies Graph](#load-dependencies-graph)
+  - [Get Instability and Abstractness](#get-instability-and-abstractness)
+  - [General Metrics](#general-metrics)
+    - [Lines of Code](#lines-of-code)
+    - [Count types](#count-types)
+    - [Interfaces](#interfaces)
+    - [Comments](#comments)
+  - [Get Packages Information](#get-packages-information)
+  - [Git Repository Information](#git-repository-information)
 - [License](#license)
 - [Credits](#credits)
 
@@ -62,7 +63,7 @@ func project_information_example() {
 }
 ```
 
-### Calculate Dependency Coupling
+### Calculate Dependency Coupling Level
 
 One of the most powerful features of this library is the option to analyze the coupling level for a
 specific dependency, this information is very helpful to estimate the effort for migrate this dependency or for
@@ -235,7 +236,7 @@ func get_instability_and_abstractness() {
 }
 ```
 
-### Get General Metrics
+### General Metrics
 
 #### Lines of Code
 Lines of Code is a basic metric for your codebase
