@@ -1,4 +1,4 @@
-// Package project provides functions to load information about Go projects
+// Package project provides functions to load information of a Golang project
 package project
 
 import (
@@ -9,6 +9,7 @@ import (
 )
 
 // LoadProjectInfo loads information for a project in the provided `path`.
+//
 // It returns an error if the path doesn't exist or the path doesn't contain a valid Golang project.
 func LoadProjectInfo(path string) (*ProjectInfo, error) {
 	sanitizedPath := strings.TrimPrefix(path, "file://")

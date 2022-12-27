@@ -7,6 +7,7 @@ import (
 )
 
 // LoadRepositoryInfo loads Git repository information given a provided `path`.
+//
 // It returns an error if the path doesn't exist or the path doesn't contain a valid Git repository.
 func LoadRepositoryInfo(path string) (*RepositoryInfo, error) {
 	fmt.Println("Search for RepositoryInfo into: " + path)

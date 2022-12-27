@@ -9,7 +9,8 @@ import (
 	"path/filepath"
 )
 
-// CountLinesOfCode returns the number of lines of code of a certain file in a specific package directory
+// CountLinesOfCode returns the number of lines of code for a certain file in a specific package directory
+//
 // It returns an error if there is something unexpected with the provided file
 func CountLinesOfCode(packageDir, srcFile string) (int, error) {
 	f, err := os.Open(filepath.Join(packageDir, srcFile))

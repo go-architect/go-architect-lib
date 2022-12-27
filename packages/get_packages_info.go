@@ -1,4 +1,4 @@
-// Package packages provides functions to retrieve infromation about packages in a Golang project
+// Package packages provides functions to retrieve information about packages in a Golang project
 package packages
 
 import (
@@ -10,10 +10,10 @@ import (
 
 var verbose bool
 
-// GetBasicPackagesInfo retrieves a slice of information about each package in a project.
+// GetBasicPackagesInfo retrieves a slice with information about each package in a Golang project.
 //
 // An error is returned when it's not possible to get the packages information
-func GetBasicPackagesInfo(prj project.ProjectInfo) ([]*PackageInfo, error) {
+func GetBasicPackagesInfo(prj *project.ProjectInfo) ([]*PackageInfo, error) {
 	var packagesInfo []*PackageInfo
 	var context = build.Default
 	context.Dir = prj.Path
@@ -41,7 +41,7 @@ func GetBasicPackagesInfo(prj project.ProjectInfo) ([]*PackageInfo, error) {
 	return packagesInfo, nil
 }
 
-func getPackages(prj project.ProjectInfo) ([]string, error) {
+func getPackages(prj *project.ProjectInfo) ([]string, error) {
 	config := &packages.Config{Dir: prj.Path}
 	pkgs, err := packages.Load(config, "./...")
 	if err != nil {

@@ -1,4 +1,4 @@
-// Package instability provides functions to retrieve instability, abstractness and distance from main diagonal of each package
+// Package instability provides functions to retrieve instability, abstractness and distance from main diagonal of each package in a Golang project
 package instability
 
 import (
@@ -18,7 +18,7 @@ import (
 // GetInstability retrieves the PackageInstability data for each package in the provided project
 //
 // An error is returned when it's not possible to get the packages information
-func GetInstability(prj project.ProjectInfo) ([]*PackageInstability, error) {
+func GetInstability(prj *project.ProjectInfo) ([]*PackageInstability, error) {
 	var data []*PackageInstability
 	pkgs, err := packages.GetBasicPackagesInfo(prj)
 	if err != nil {
@@ -102,7 +102,7 @@ func countTypes(pkgPath string, srcFile string) (int, int, error) {
 	return interfaces, structs, nil
 }
 
-func calculateCoupling(prj project.ProjectInfo, pkgs []*packages.PackageInfo) (map[string][]string, map[string][]string) {
+func calculateCoupling(prj *project.ProjectInfo, pkgs []*packages.PackageInfo) (map[string][]string, map[string][]string) {
 	efferentCoupling := make(map[string][]string)
 	afferentCoupling := make(map[string][]string)
 

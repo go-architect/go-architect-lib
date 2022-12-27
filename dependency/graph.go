@@ -1,4 +1,4 @@
-// Package dependency provides functions to create the Dependency Graph for a desired golang project
+// Package dependency provides functions to create the Dependency Graph for a Golang project
 package dependency
 
 import (
@@ -10,7 +10,12 @@ import (
 
 const allPackages = "ALL"
 
-func GetDependencyGraph(prj project.ProjectInfo, startPackage string) (*ModuleDependencyGraph, error) {
+// GetDependencyGraph retrieves a structure that represents a Dependency Graph for the provided Golang project
+// If you pass a startPackage different from "ALL", then this function will generate the Dependency Graph starting
+// at this package and including only the referenced packages.
+//
+// An error is returned when it's not possible to get the packages information
+func GetDependencyGraph(prj *project.ProjectInfo, startPackage string) (*ModuleDependencyGraph, error) {
 	pkgs, err := packages2.GetBasicPackagesInfo(prj)
 	if err != nil {
 		return nil, err

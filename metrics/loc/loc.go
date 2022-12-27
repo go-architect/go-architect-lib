@@ -12,7 +12,7 @@ import (
 // LocMetric contains lines of code aggregated by: file, package and project.
 //
 // An error is returned when it's not possible to get the packages information
-func CountLoc(prj project.ProjectInfo) (*ProjectLOC, error) {
+func CountLoc(prj *project.ProjectInfo) (*ProjectLOC, error) {
 	pkgs, err := packages.GetBasicPackagesInfo(prj)
 	if err != nil {
 		return nil, err

@@ -1,4 +1,4 @@
-// Package dsm provides functions to create the Dependency Structure Matrix for a desired golang project
+// Package dsm provides functions to create the Dependency Structure Matrix for a Golang project
 package dsm
 
 import (
@@ -8,8 +8,9 @@ import (
 )
 
 // GetDependencyStructureMatrix calculates the Dependency Structure Matrix for a given Golang project.
+//
 // It returns an error if it's not possible to load de DSM.
-func GetDependencyStructureMatrix(prj project.ProjectInfo) (*DependencyStructureMatrix, error) {
+func GetDependencyStructureMatrix(prj *project.ProjectInfo) (*DependencyStructureMatrix, error) {
 	dependencyMatrix := &DependencyStructureMatrix{
 		Module: prj.Package,
 	}
