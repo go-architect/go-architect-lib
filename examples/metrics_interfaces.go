@@ -20,7 +20,7 @@ func interface_metrics() {
 	}
 
 	fmt.Println("Interface Metrics")
-	fmt.Printf("Average Number of methods: %s\n", interfaceMetrics.AverageMethods)
+	fmt.Printf("Average Number of methods: %v\n", interfaceMetrics.AverageMethods)
 
 	fmt.Println("Interfaces with max number of methods")
 	for _, i := range interfaceMetrics.InterfaceMaxMethods {
