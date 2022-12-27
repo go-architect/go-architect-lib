@@ -1,5 +1,6 @@
 # Go Architecture Library
 
+[![CI Workflow](https://github.com/fdaines/go-architect-lib/actions/workflows/default.yml/badge.svg)](https://github.com/fdaines/go-architect-lib/actions/workflows/default.yml)
 [![GoDoc](https://pkg.go.dev/badge/github.com/fdaines/go-architect-lib)](https://https://pkg.go.dev/github.com/fdaines/go-architect-lib)
 [![GoReport](https://goreportcard.com/badge/github.com/fdaines/go-architect-lib)](https://goreportcard.com/report/github.com/fdaines/go-architect-lib)
 
