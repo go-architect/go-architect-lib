@@ -30,3 +30,18 @@ type counter struct {
 	PublicVariables  int `json:"public_variables"`  // number of public variables
 	PublicConstants  int `json:"public_constants"`  // number of public constants
 }
+
+func (c *counter) Add(ct counter) {
+	c.SourceFiles += ct.SourceFiles
+	c.Structs += ct.Structs
+	c.Interfaces += ct.Interfaces
+	c.Functions += ct.Functions
+	c.Variables += ct.Variables
+	c.Constants += ct.Constants
+	c.PublicStructs += ct.PublicStructs
+	c.PublicInterfaces += ct.PublicInterfaces
+	c.PublicFunctions += ct.PublicFunctions
+	c.PublicMethods += ct.PublicMethods
+	c.PublicVariables += ct.PublicVariables
+	c.PublicConstants += ct.PublicConstants
+}
