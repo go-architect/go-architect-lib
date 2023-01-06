@@ -42,6 +42,9 @@ func ResolveInterfaceMetrics(prj *project.ProjectInfo) (*InterfaceMetrics, error
 func resolveInterfacesWithMaxMethods(interfaces []InterfaceInfo) []InterfaceInfo {
 	max := 0
 	var collection []InterfaceInfo
+	if len(interfaces) == 0 {
+		return collection
+	}
 
 	for _, i := range interfaces {
 		if i.Methods > max {
@@ -61,6 +64,9 @@ func resolveInterfacesWithMaxMethods(interfaces []InterfaceInfo) []InterfaceInfo
 func resolveInterfacesWithMinMethods(interfaces []InterfaceInfo) []InterfaceInfo {
 	min := math.MaxInt
 	var collection []InterfaceInfo
+	if len(interfaces) == 0 {
+		return collection
+	}
 
 	for _, i := range interfaces {
 		if i.Methods < min {
@@ -78,8 +84,11 @@ func resolveInterfacesWithMinMethods(interfaces []InterfaceInfo) []InterfaceInfo
 }
 
 func resolveAverageMethods(interfaces []InterfaceInfo) float64 {
-	var sum, total int
+	if len(interfaces) == 0 {
+		return 0
+	}
 
+	var sum, total int
 	for _, i := range interfaces {
 		total++
 		sum += i.Methods
