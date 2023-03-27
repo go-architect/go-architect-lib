@@ -43,6 +43,8 @@ func calculateDependencyCouplingForPackages(pkgs []*packages.PackageInfo, depend
 			}
 		}
 		pc.CouplingLevel = calculateCouplingLevelForFile(pc.FileDetails)
+		sort.Sort(SortFilesByDependencyLevel(pc.FileDetails))
+
 		dc.PackageDetails = append(dc.PackageDetails, pc)
 	}
 	dc.CouplingLevel = calculateCouplingLevelForModule(dc.PackageDetails)
@@ -88,11 +90,3 @@ func calculateCouplingLevelForModule(packageCoupling []*PackageCoupling) int {
 	}
 	return total
 }
-
-type SortPackagesByDependencyLevel []*PackageCoupling
-
-func (a SortPackagesByDependencyLevel) Len() int { return len(a) }
-func (a SortPackagesByDependencyLevel) Less(i, j int) bool {
-	return a[i].CouplingLevel > a[j].CouplingLevel
-}
-func (a SortPackagesByDependencyLevel) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
