@@ -9,6 +9,7 @@ import (
 	"go/token"
 	"os"
 	"path/filepath"
+	"sort"
 )
 
 // CalculateCoupling retrieves information about the coupling level of a provided Golang project respect to a specific dependency
@@ -22,6 +23,7 @@ func CalculateCoupling(prj *project.ProjectInfo, dep string) (*DependencyCouplin
 
 	dependants := resolveDependantPackages(pkgs, dep)
 	dc := calculateDependencyCouplingForPackages(dependants, dep)
+	sort.Sort(SortPackagesByDependencyLevel(dc.PackageDetails))
 
 	return dc, nil
 }
@@ -86,3 +88,11 @@ func calculateCouplingLevelForModule(packageCoupling []*PackageCoupling) int {
 	}
 	return total
 }
+
+type SortPackagesByDependencyLevel []*PackageCoupling
+
+func (a SortPackagesByDependencyLevel) Len() int { return len(a) }
+func (a SortPackagesByDependencyLevel) Less(i, j int) bool {
+	return a[i].CouplingLevel > a[j].CouplingLevel
+}
+func (a SortPackagesByDependencyLevel) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
