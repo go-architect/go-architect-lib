@@ -28,6 +28,7 @@ func GetDependencyStructureMatrix(prj *project.ProjectInfo) (*DependencyStructur
 		}
 	}
 	dependencyMatrix.Packages = arrays.RemoveDuplicatedStrings(dependencyMatrix.Packages)
+	dependencyMatrix.Packages = sortPackages(dependencyMatrix.Packages, prj)
 	dependencyMatrix.Dependencies = make([][]int, len(dependencyMatrix.Packages))
 	for i := 0; i < len(dependencyMatrix.Packages); i++ {
 		dependencyMatrix.Dependencies[i] = make([]int, len(dependencyMatrix.Packages))
