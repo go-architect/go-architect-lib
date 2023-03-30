@@ -113,6 +113,9 @@ func dependency_coupling() {
 
 Go Architect Library can generate the [Dependency Structure Matrix](https://en.wikipedia.org/wiki/Design_structure_matrix) for a Golang project.
 
+The packages are added to the DSM using the following criteria:
+- First the packages are grouped and added based on each packages group: first Internal packages, then Organization packages, then External packages and finally the Standard packages.
+- In each group, the packages are sorted alphabetically.
 ```go
 package examples
 
