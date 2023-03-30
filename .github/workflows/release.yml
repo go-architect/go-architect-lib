@@ -1,0 +1,28 @@
+name: Release Workflow
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    permissions:
+      contents: write
+      discussions: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get tags
+        run: git fetch --tags origin
+      - name: Release Notes
+        run: git log $(git describe --tags --abbrev=0 ${{github.ref_name}}^)..HEAD --pretty=format:'%h - %s' > ${{ github.workspace }}-CHANGELOG.txt
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: ${{ github.workspace }}-CHANGELOG.txt
+      - name: Publish Go Package
+        run: curl --location --request POST https://pkg.go.dev/fetch/github.com/fdaines/go-architect-lib@${{github.ref_name}}
