@@ -31,7 +31,7 @@ func GetDependencyStructureMatrix(prj *project.ProjectInfo) (*DependencyStructur
 	}
 	dependencyMatrix.Packages = arrays.RemoveDuplicatedStrings(dependencyMatrix.Packages)
 	fillDSM(dependencyMatrix, pkgs)
-	dependencyMatrix.Packages = sortDSM(*dependencyMatrix, []string{}, []string{})
+	dependencyMatrix.Packages = reArrangeDSM(*dependencyMatrix, prj)
 	fillDSM(dependencyMatrix, pkgs)
 
 	return dependencyMatrix, nil

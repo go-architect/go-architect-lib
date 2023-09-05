@@ -10,6 +10,7 @@ type DependencyStructureMatrix struct {
 // For internal use only, represents how many dependencies and dependants a package has.
 type dependencyDetails struct {
 	packageName  string
+	packageRank  int
 	dependencies int
 	dependants   int
 }
