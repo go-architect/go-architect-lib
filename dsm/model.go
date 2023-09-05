@@ -6,3 +6,10 @@ type DependencyStructureMatrix struct {
 	Packages     []string `json:"packages"`     // list of packages used by the module
 	Dependencies [][]int  `json:"dependencies"` // this matrix[i][j] represents an import of Package[i] in Package[j]
 }
+
+// For internal use only, represents how many dependencies and dependants a package has.
+type dependencyDetails struct {
+	packageName  string
+	dependencies int
+	dependants   int
+}
