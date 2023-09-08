@@ -64,9 +64,9 @@ func calculateCouplingForFile(pkgPath, srcFile, dep string) (*FileCoupling, erro
 
 	if containsDependency(astFile, dep) {
 		fc := &FileCoupling{
-			Package:  pkgPath,
-			File:     srcFile,
-			FilePath: filepath.Join(pkgPath, srcFile),
+			Package:     pkgPath,
+			File:        srcFile,
+			FileContent: retrieveFileContent(filepath.Join(pkgPath, srcFile)),
 		}
 		fc.Details = calculateCouplingDetails(fileset, astFile, dep)
 		fc.CouplingLevel = len(fc.Details)
@@ -75,6 +75,15 @@ func calculateCouplingForFile(pkgPath, srcFile, dep string) (*FileCoupling, erro
 	}
 
 	return nil, nil
+}
+
+func retrieveFileContent(filepath string) string {
+	fileContent, err := os.ReadFile(filepath)
+	if err != nil {
+		return "Cannot open file: " + filepath
+	}
+
+	return string(fileContent)
 }
 
 func resolveCouplingLines(details []Detail) []int {
