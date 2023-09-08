@@ -15,6 +15,8 @@ type PackageCoupling struct {
 type FileCoupling struct {
 	Package       string   `json:"package"`        // the package
 	File          string   `json:"file"`           // the file
+	FilePath      string   `json:"file_path"`      // the file path
+	Lines         []int    `json:"coupling_lines"` // the line where the dependency is used
 	CouplingLevel int      `json:"coupling_level"` // calculated coupling level for this file
 	Details       []Detail `json:"details"`        // details about the dependency
 }

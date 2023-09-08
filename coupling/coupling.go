@@ -64,15 +64,37 @@ func calculateCouplingForFile(pkgPath, srcFile, dep string) (*FileCoupling, erro
 
 	if containsDependency(astFile, dep) {
 		fc := &FileCoupling{
-			Package: pkgPath,
-			File:    srcFile,
+			Package:  pkgPath,
+			File:     srcFile,
+			FilePath: filepath.Join(pkgPath, srcFile),
 		}
 		fc.Details = calculateCouplingDetails(fileset, astFile, dep)
 		fc.CouplingLevel = len(fc.Details)
+		fc.Lines = resolveCouplingLines(fc.Details)
 		return fc, nil
 	}
 
 	return nil, nil
+}
+
+func resolveCouplingLines(details []Detail) []int {
+	var lines []int
+	for _, d := range details {
+		if !containLines(lines, d.Line) {
+			lines = append(lines, d.Line)
+		}
+	}
+
+	return lines
+}
+
+func containLines(array []int, value int) bool {
+	for _, v := range array {
+		if v == value {
+			return true
+		}
+	}
+	return false
 }
 
 func calculateCouplingLevelForFile(fileCoupling []*FileCoupling) int {
