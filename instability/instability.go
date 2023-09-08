@@ -86,20 +86,31 @@ func countTypes(pkgPath string, srcFile string) (int, int, error) {
 	if err != nil {
 		return 0, 0, err
 	}
-	var interfaces, structs int
-	ast.Inspect(node, func(n ast.Node) bool {
-		switch t := n.(type) {
-		case *ast.InterfaceType:
-			if t.Methods != nil && len(t.Methods.List) > 0 {
-				interfaces++
+	var structs, interfaces, functions, methods int
+	for _, td := range node.Decls {
+		switch t := td.(type) {
+		case *ast.FuncDecl:
+			if t.Recv != nil {
+				methods++
+			} else {
+				functions++
 			}
-		case *ast.StructType:
-			structs++
+		case *ast.GenDecl:
+			switch ts := t.Specs[0].(type) {
+			case *ast.TypeSpec:
+				switch tsx := ts.Type.(type) {
+				case *ast.StructType:
+					structs++
+				case *ast.InterfaceType:
+					if tsx.Methods != nil && len(tsx.Methods.List) > 0 {
+						interfaces++
+					}
+				}
+			}
 		}
-		return true
-	})
+	}
 
-	return interfaces, structs, nil
+	return structs + interfaces, functions + methods, nil
 }
 
 func calculateCoupling(prj *project.ProjectInfo, pkgs []*packages.PackageInfo) (map[string][]string, map[string][]string) {
