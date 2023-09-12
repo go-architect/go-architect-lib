@@ -25,7 +25,9 @@ func sortDSM(dsm DependencyStructureMatrix, prj *project.ProjectInfo, head []str
 		head = append(head, n.packageName)
 	}
 	for _, n := range noDependencies {
-		tail = append([]string{n.packageName}, tail...)
+		if !arrays.Contains(head, n.packageName) {
+			tail = append([]string{n.packageName}, tail...)
+		}
 	}
 	newMatrix := removeRowsAndColumns(dsm, head, tail)
 
