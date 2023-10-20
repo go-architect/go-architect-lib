@@ -2,11 +2,11 @@
 package comments
 
 import (
-	"github.com/fdaines/go-architect-lib/internal/utils"
-	"github.com/fdaines/go-architect-lib/internal/utils/loc"
-	packagesUtils "github.com/fdaines/go-architect-lib/internal/utils/packages"
-	"github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/internal/utils"
+	"github.com/go-architect/go-architect-lib/internal/utils/loc"
+	packagesUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
+	"github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 	"go/parser"
 	"go/token"
 	"os"

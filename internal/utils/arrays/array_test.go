@@ -2,7 +2,7 @@ package arrays_test
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/internal/utils/arrays"
+	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

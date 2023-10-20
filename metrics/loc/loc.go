@@ -2,10 +2,10 @@
 package loc
 
 import (
-	"github.com/fdaines/go-architect-lib/internal/utils/loc"
-	packageUtils "github.com/fdaines/go-architect-lib/internal/utils/packages"
-	packages "github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/internal/utils/loc"
+	packageUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
+	packages "github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 // CountLoc retrieves the Lines of Code metrics for a Golang project.

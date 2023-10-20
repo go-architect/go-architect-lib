@@ -25,4 +25,4 @@ jobs:
         with:
           body_path: ${{ github.workspace }}-CHANGELOG.txt
       - name: Publish Go Package
-        run: curl --location --request POST https://pkg.go.dev/fetch/github.com/fdaines/go-architect-lib@${{github.ref_name}}
+        run: curl --location --request POST https://pkg.go.dev/fetch/github.com/go-architect/go-architect-lib@${{github.ref_name}}

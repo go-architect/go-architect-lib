@@ -2,7 +2,7 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/repository"
+	"github.com/go-architect/go-architect-lib/repository"
 )
 
 func git_repository_information() {

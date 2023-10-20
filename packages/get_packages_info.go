@@ -3,7 +3,7 @@ package packages
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/project"
 	"go/build"
 	"golang.org/x/tools/go/packages"
 )

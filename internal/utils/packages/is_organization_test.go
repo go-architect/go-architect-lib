@@ -2,7 +2,7 @@ package packages_test
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/internal/utils/packages"
+	"github.com/go-architect/go-architect-lib/internal/utils/packages"
 	"testing"
 )
 

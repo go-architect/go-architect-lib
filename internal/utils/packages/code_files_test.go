@@ -1,7 +1,7 @@
 package packages_test
 
 import (
-	"github.com/fdaines/go-architect-lib/internal/utils/packages"
+	"github.com/go-architect/go-architect-lib/internal/utils/packages"
 	"github.com/stretchr/testify/assert"
 	"go/build"
 	"testing"

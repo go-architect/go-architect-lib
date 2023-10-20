@@ -2,9 +2,9 @@
 package dsm
 
 import (
-	"github.com/fdaines/go-architect-lib/internal/utils/arrays"
-	"github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
+	"github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 // GetDependencyStructureMatrix calculates the Dependency Structure Matrix for a given Golang project.

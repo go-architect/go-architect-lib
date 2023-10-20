@@ -1,8 +1,8 @@
 # Go Architecture Library
 
-[![CI Workflow](https://github.com/fdaines/go-architect-lib/actions/workflows/default.yml/badge.svg)](https://github.com/fdaines/go-architect-lib/actions/workflows/default.yml)
-[![GoDoc](https://pkg.go.dev/badge/github.com/fdaines/go-architect-lib)](https://pkg.go.dev/github.com/fdaines/go-architect-lib)
-[![GoReport](https://goreportcard.com/badge/github.com/fdaines/go-architect-lib)](https://goreportcard.com/report/github.com/fdaines/go-architect-lib)
+[![CI Workflow](https://github.com/go-architect/go-architect-lib/actions/workflows/default.yml/badge.svg)](https://github.com/go-architect/go-architect-lib/actions/workflows/default.yml)
+[![GoDoc](https://pkg.go.dev/badge/github.com/go-architect/go-architect-lib)](https://pkg.go.dev/github.com/go-architect/go-architect-lib)
+[![GoReport](https://goreportcard.com/badge/github.com/go-architect/go-architect-lib)](https://goreportcard.com/report/github.com/go-architect/go-architect-lib)
 
 Go Architecture Library contains a set of functions and data structures
 to support the architectural analysis for a Golang Project.
@@ -30,13 +30,13 @@ to support the architectural analysis for a Golang Project.
 ## Getting Started
 
 ```bash
-GO111MODULE=on go get -u github.com/fdaines/go-architect-lib
+GO111MODULE=on go get -u github.com/go-architect/go-architect-lib
 ```
 
 ### Importing the library
 
 ```go
-import "github.com/fdaines/go-architect-lib/project"
+import "github.com/go-architect/go-architect-lib/project"
 ```
 
 ### Load Project Information
@@ -46,7 +46,7 @@ package examples
 
 import (
   "fmt"
-  "github.com/fdaines/go-architect-lib/project"
+  "github.com/go-architect/go-architect-lib/project"
 )
 
 func project_information_example() {
@@ -75,8 +75,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/coupling"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/coupling"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func dependency_coupling() {
@@ -121,8 +121,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/dsm"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/dsm"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func load_dsm() {
@@ -153,8 +153,8 @@ package examples
 
 import (
   "fmt"
-  "github.com/fdaines/go-architect-lib/dependency"
-  "github.com/fdaines/go-architect-lib/project"
+  "github.com/go-architect/go-architect-lib/dependency"
+  "github.com/go-architect/go-architect-lib/project"
 )
 
 func load_dependencies_graph() {
@@ -218,8 +218,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/instability"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/instability"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func get_instability_and_abstractness() {
@@ -250,8 +250,8 @@ package examples
 
 import (
   "fmt"
-  "github.com/fdaines/go-architect-lib/metrics/loc"
-  "github.com/fdaines/go-architect-lib/project"
+  "github.com/go-architect/go-architect-lib/metrics/loc"
+  "github.com/go-architect/go-architect-lib/project"
 )
 
 func count_loc() {
@@ -290,8 +290,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/metrics/types"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/metrics/types"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func count_types() {
@@ -341,8 +341,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/metrics/interfaces"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/metrics/interfaces"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func interface_metrics() {
@@ -381,8 +381,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/metrics/comments"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/metrics/comments"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func comments_metrics() {
@@ -418,8 +418,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func get_packages_information() {
@@ -454,7 +454,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/repository"
+	"github.com/go-architect/go-architect-lib/repository"
+	"github.com/go-architect/go-architect-lib/repository"
 )
 
 func git_repository_information() {

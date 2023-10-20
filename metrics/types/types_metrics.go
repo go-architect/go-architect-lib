@@ -2,9 +2,9 @@
 package types
 
 import (
-	packageUtils "github.com/fdaines/go-architect-lib/internal/utils/packages"
-	"github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	packageUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
+	"github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 	"go/ast"
 	"go/parser"
 	"go/token"

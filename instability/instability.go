@@ -2,11 +2,11 @@
 package instability
 
 import (
-	"github.com/fdaines/go-architect-lib/internal/utils"
-	"github.com/fdaines/go-architect-lib/internal/utils/arrays"
-	packageUtils "github.com/fdaines/go-architect-lib/internal/utils/packages"
-	"github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/internal/utils"
+	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
+	packageUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
+	"github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 	"go/ast"
 	"go/parser"
 	"go/token"

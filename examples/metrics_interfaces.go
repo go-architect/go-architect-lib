@@ -2,8 +2,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/metrics/interfaces"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/metrics/interfaces"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func interface_metrics() {

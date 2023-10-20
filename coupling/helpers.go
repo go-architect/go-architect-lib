@@ -1,8 +1,8 @@
 package coupling
 
 import (
-	"github.com/fdaines/go-architect-lib/internal/utils/arrays"
-	"github.com/fdaines/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
+	"github.com/go-architect/go-architect-lib/packages"
 	"go/ast"
 	"strings"
 )

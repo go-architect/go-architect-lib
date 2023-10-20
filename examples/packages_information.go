@@ -2,8 +2,8 @@ package examples
 
 import (
 	"fmt"
-	"github.com/fdaines/go-architect-lib/packages"
-	"github.com/fdaines/go-architect-lib/project"
+	"github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/project"
 )
 
 func get_packages_information() {

@@ -1,4 +1,4 @@
-module github.com/fdaines/go-architect-lib
+module github.com/go-architect/go-architect-lib
 
 go 1.19
 
