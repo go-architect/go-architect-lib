@@ -46,9 +46,9 @@ func GetDependencyStructureMatrix(prj *project.ProjectInfo) (*DependencyStructur
 }
 
 func fillDSM(dependencyMatrix *DependencyStructureMatrix, pkgs []*packages.PackageInfo) {
-	dependencyMatrix.Dependencies = make([][]int, len(dependencyMatrix.Packages))
+	dependencyMatrix.Dependencies = make([][]int64, len(dependencyMatrix.Packages))
 	for i := 0; i < len(dependencyMatrix.Packages); i++ {
-		dependencyMatrix.Dependencies[i] = make([]int, len(dependencyMatrix.Packages))
+		dependencyMatrix.Dependencies[i] = make([]int64, len(dependencyMatrix.Packages))
 	}
 	for _, pkg := range pkgs {
 		currentPackageIndex := arrays.IndexOf(dependencyMatrix.Packages, pkg.Path)
@@ -65,7 +65,7 @@ func fillDSM(dependencyMatrix *DependencyStructureMatrix, pkgs []*packages.Packa
 	}
 }
 
-func calculateFileDependencies(srcFile, dependency string) (int, error) {
+func calculateFileDependencies(srcFile, dependency string) (int64, error) {
 	data, err := os.ReadFile(srcFile)
 	if err != nil {
 		return 0, err
@@ -80,9 +80,9 @@ func calculateFileDependencies(srcFile, dependency string) (int, error) {
 	return total, nil
 }
 
-func countDependencies(fileset *token.FileSet, astFile *ast.File, dep string) int {
+func countDependencies(fileset *token.FileSet, astFile *ast.File, dep string) int64 {
 	var dependencyPrefix string
-	counter := 0
+	var counter int64
 	ast.Inspect(astFile, func(n ast.Node) bool {
 		if n == nil {
 			return true

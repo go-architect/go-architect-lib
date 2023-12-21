@@ -37,7 +37,7 @@ func sortDSM(dsm DependencyStructureMatrix, prj *project.ProjectInfo, head []str
 func resolveCandidatesColumns(dsm DependencyStructureMatrix, prj *project.ProjectInfo) ([]dependencyDetails, []dependencyDetails) {
 	details := make(map[string]dependencyDetails)
 	for idx, c := range dsm.Packages {
-		var dependencies, dependants int
+		var dependencies, dependants int64
 		for i := 0; i < len(dsm.Packages); i++ {
 			dependencies += dsm.Dependencies[i][idx]
 			dependants += dsm.Dependencies[idx][i]
@@ -72,7 +72,7 @@ func resolveCandidatesColumns(dsm DependencyStructureMatrix, prj *project.Projec
 
 func removeRowsAndColumns(dsm DependencyStructureMatrix, head []string, tail []string) DependencyStructureMatrix {
 	var newColumns []string
-	var matrix [][]int
+	var matrix [][]int64
 
 	for idx, c := range dsm.Packages {
 		if !arrays.Contains(head, c) && !arrays.Contains(tail, c) {
@@ -82,7 +82,7 @@ func removeRowsAndColumns(dsm DependencyStructureMatrix, head []string, tail []s
 	}
 
 	for i := 0; i < len(matrix); i++ {
-		var newRow []int
+		var newRow []int64
 		for idx, c := range dsm.Packages {
 			if !arrays.Contains(head, c) && !arrays.Contains(tail, c) {
 				newRow = append(newRow, matrix[i][idx])
@@ -98,18 +98,18 @@ func removeRowsAndColumns(dsm DependencyStructureMatrix, head []string, tail []s
 	}
 }
 
-func resolvePackageRank(packageName string, prj *project.ProjectInfo) int {
+func resolvePackageRank(packageName string, prj *project.ProjectInfo) int64 {
 	if packages.IsInternalPackage(packageName, prj.Package) {
 		return 1
 	}
 	if packages.IsOrganizationPackage(packageName, prj.OrganizationPackages) {
-		return 10
-	}
-	if packages.IsExternalPackage(packageName, prj.Package) {
-		return 100
-	}
-	if packages.IsStandardPackage(packageName) {
 		return 1000
 	}
-	return 10000
+	if packages.IsExternalPackage(packageName, prj.Package) {
+		return 1000000
+	}
+	if packages.IsStandardPackage(packageName) {
+		return 1000000000
+	}
+	return 1000000000
 }
