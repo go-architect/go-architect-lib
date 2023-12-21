@@ -2,7 +2,17 @@
 package dsm
 
 import (
+	"bytes"
+	"go/ast"
+	"go/parser"
+	"go/printer"
+	"go/token"
+	"os"
+	"path/filepath"
+	"strings"
+
 	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
+	packageUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
 	"github.com/go-architect/go-architect-lib/packages"
 	"github.com/go-architect/go-architect-lib/project"
 )
@@ -21,10 +31,8 @@ func GetDependencyStructureMatrix(prj *project.ProjectInfo) (*DependencyStructur
 
 	for _, pkg := range pkgs {
 		dependencyMatrix.Packages = append(dependencyMatrix.Packages, pkg.Path)
-		//		fmt.Printf("Package: %s\n", pkg.Path)
 		if pkg.PackageData != nil {
 			for _, d := range pkg.PackageData.Imports {
-				//				fmt.Printf("\t* Imports %s\n", d)
 				dependencyMatrix.Packages = append(dependencyMatrix.Packages, d)
 			}
 		}
@@ -43,12 +51,72 @@ func fillDSM(dependencyMatrix *DependencyStructureMatrix, pkgs []*packages.Packa
 		dependencyMatrix.Dependencies[i] = make([]int, len(dependencyMatrix.Packages))
 	}
 	for _, pkg := range pkgs {
-		index1 := arrays.IndexOf(dependencyMatrix.Packages, pkg.Path)
+		currentPackageIndex := arrays.IndexOf(dependencyMatrix.Packages, pkg.Path)
 		if pkg.PackageData != nil {
 			for _, d := range pkg.PackageData.Imports {
-				index2 := arrays.IndexOf(dependencyMatrix.Packages, d)
-				dependencyMatrix.Dependencies[index2][index1] += 1
+				dependencyIndex := arrays.IndexOf(dependencyMatrix.Packages, d)
+				for _, f := range packageUtils.GetCodeFiles(pkg.PackageData) {
+					srcPath := filepath.Join(pkg.PackageData.Dir, f)
+					deps, _ := calculateFileDependencies(srcPath, d)
+					dependencyMatrix.Dependencies[dependencyIndex][currentPackageIndex] += deps
+				}
 			}
 		}
 	}
+}
+
+func calculateFileDependencies(srcFile, dependency string) (int, error) {
+	data, err := os.ReadFile(srcFile)
+	if err != nil {
+		return 0, err
+	}
+	fileset := token.NewFileSet()
+	astFile, err := parser.ParseFile(fileset, srcFile, data, 0)
+	if err != nil {
+		return 0, err
+	}
+
+	total := countDependencies(fileset, astFile, dependency)
+	return total, nil
+}
+
+func countDependencies(fileset *token.FileSet, astFile *ast.File, dep string) int {
+	var dependencyPrefix string
+	counter := 0
+	ast.Inspect(astFile, func(n ast.Node) bool {
+		if n == nil {
+			return true
+		}
+		switch t := n.(type) {
+		case *ast.ImportSpec:
+			if sameDependency(t.Path.Value, dep) {
+				if t.Name != nil && t.Name.Name != "." {
+					dependencyPrefix = t.Name.Name
+				} else {
+					dependencyPrefix = retrievePrefix(dep)
+				}
+				counter++
+			}
+		case *ast.SelectorExpr:
+			var buf bytes.Buffer
+			printer.Fprint(&buf, fileset, t)
+			if dependencyPrefix != "" && strings.HasPrefix(buf.String(), dependencyPrefix) {
+				counter++
+			}
+		}
+		return true
+	})
+	return counter
+}
+
+func sameDependency(d1, d2 string) bool {
+	dx1 := strings.Replace(d1, "\"", "", 2)
+	dx2 := strings.Replace(d2, "\"", "", 2)
+
+	return dx1 == dx2
+}
+
+func retrievePrefix(dep string) string {
+	split := strings.Split(dep, "/")
+	return split[len(split)-1]
 }
