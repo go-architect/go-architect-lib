@@ -119,7 +119,7 @@ func calculateCoupling(prj *project.ProjectInfo, pkgs []*packages.PackageInfo) (
 
 	for _, pkg := range pkgs {
 		if pkg.PackageData != nil {
-			for _, d := range pkg.PackageData.Imports {
+			for _, d := range packageUtils.GetImportedPackages(pkg.PackageData) {
 				if packageUtils.IsInternalPackage(d, prj.Package) {
 					efferentCoupling[pkg.Path] = append(efferentCoupling[pkg.Path], d)
 					afferentCoupling[d] = append(afferentCoupling[d], pkg.Path)

@@ -2,6 +2,7 @@ package coupling
 
 import (
 	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
+	packageUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
 	"github.com/go-architect/go-architect-lib/packages"
 	"go/ast"
 	"strings"
@@ -33,7 +34,7 @@ func resolveDependantPackages(pkgs []*packages.PackageInfo, dep string) []*packa
 	var dependants []*packages.PackageInfo
 	for _, p := range pkgs {
 		if p.PackageData != nil {
-			if arrays.Contains(p.PackageData.Imports, dep) {
+			if arrays.Contains(packageUtils.GetImportedPackages(p.PackageData), dep) {
 				dependants = append(dependants, p)
 			}
 		}

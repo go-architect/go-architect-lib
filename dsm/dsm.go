@@ -32,7 +32,7 @@ func GetDependencyStructureMatrix(prj *project.ProjectInfo) (*DependencyStructur
 	for _, pkg := range pkgs {
 		dependencyMatrix.Packages = append(dependencyMatrix.Packages, pkg.Path)
 		if pkg.PackageData != nil {
-			for _, d := range pkg.PackageData.Imports {
+			for _, d := range packageUtils.GetImportedPackages(pkg.PackageData) {
 				dependencyMatrix.Packages = append(dependencyMatrix.Packages, d)
 			}
 		}
@@ -53,7 +53,7 @@ func fillDSM(dependencyMatrix *DependencyStructureMatrix, pkgs []*packages.Packa
 	for _, pkg := range pkgs {
 		currentPackageIndex := arrays.IndexOf(dependencyMatrix.Packages, pkg.Path)
 		if pkg.PackageData != nil {
-			for _, d := range pkg.PackageData.Imports {
+			for _, d := range packageUtils.GetImportedPackages(pkg.PackageData) {
 				dependencyIndex := arrays.IndexOf(dependencyMatrix.Packages, d)
 				for _, f := range packageUtils.GetCodeFiles(pkg.PackageData) {
 					srcPath := filepath.Join(pkg.PackageData.Dir, f)

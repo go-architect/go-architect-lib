@@ -2,9 +2,10 @@
 package dependency
 
 import (
+	"fmt"
 	"github.com/go-architect/go-architect-lib/internal/utils/arrays"
 	packageUtils "github.com/go-architect/go-architect-lib/internal/utils/packages"
-	packages2 "github.com/go-architect/go-architect-lib/packages"
+	"github.com/go-architect/go-architect-lib/packages"
 	"github.com/go-architect/go-architect-lib/project"
 )
 
@@ -16,11 +17,12 @@ const allPackages = "ALL"
 //
 // An error is returned when it's not possible to get the packages information
 func GetDependencyGraph(prj *project.ProjectInfo, startPackage string) (*ModuleDependencyGraph, error) {
-	pkgs, err := packages2.GetBasicPackagesInfo(prj)
+	pkgs, err := packages.GetBasicPackagesInfo(prj)
 	if err != nil {
 		return nil, err
 	}
 
+	fmt.Printf("GetDependencyGraph: %+v\n", pkgs)
 	//	fmt.Printf("StartPackage: %s\n", startPackage)
 	if startPackage == allPackages {
 		return getFullDependencyGraph(pkgs, prj.Package, prj.OrganizationPackages), nil
@@ -28,7 +30,7 @@ func GetDependencyGraph(prj *project.ProjectInfo, startPackage string) (*ModuleD
 	return getPartialDependencyGraph(startPackage, pkgs, prj.Package, prj.OrganizationPackages), nil
 }
 
-func getPartialDependencyGraph(startPackage string, pkgs []*packages2.PackageInfo, mainPackage string, orgModulePatterns []string) *ModuleDependencyGraph {
+func getPartialDependencyGraph(startPackage string, pkgs []*packages.PackageInfo, mainPackage string, orgModulePatterns []string) *ModuleDependencyGraph {
 	var currentPackage string
 	var internal []string
 	var external []string
@@ -44,7 +46,7 @@ func getPartialDependencyGraph(startPackage string, pkgs []*packages2.PackageInf
 		for _, pkg := range pkgs {
 			if pkg.Path == currentPackage {
 				internal = append(internal, pkg.Path)
-				for _, i := range pkg.PackageData.Imports {
+				for _, i := range packageUtils.GetImportedPackages(pkg.PackageData) {
 					flag := true
 					relations[pkg.Path] = append(relations[pkg.Path], i)
 					if packageUtils.IsInternalPackage(i, mainPackage) {
@@ -67,7 +69,7 @@ func getPartialDependencyGraph(startPackage string, pkgs []*packages2.PackageInf
 	}
 }
 
-func getFullDependencyGraph(pkgs []*packages2.PackageInfo, mainPackage string, orgModulePatterns []string) *ModuleDependencyGraph {
+func getFullDependencyGraph(pkgs []*packages.PackageInfo, mainPackage string, orgModulePatterns []string) *ModuleDependencyGraph {
 	var internal []string
 	var external []string
 	var organization []string
@@ -77,8 +79,9 @@ func getFullDependencyGraph(pkgs []*packages2.PackageInfo, mainPackage string, o
 
 	for _, pkg := range pkgs {
 		internal = append(internal, pkg.Path)
+		fmt.Printf("Package: %+v\n", pkg.Path)
 		if pkg.PackageData != nil {
-			for _, i := range pkg.PackageData.Imports {
+			for _, i := range packageUtils.GetImportedPackages(pkg.PackageData) {
 				flag := true
 				relations[pkg.Path] = append(relations[pkg.Path], i)
 				if packageUtils.IsInternalPackage(i, mainPackage) {
